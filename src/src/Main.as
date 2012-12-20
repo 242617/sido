@@ -2,6 +2,7 @@ package {
 
 import controller.MainController;
 
+import flash.display.DisplayObjectContainer;
 import flash.display.Sprite;
 import flash.events.Event;
 
@@ -34,6 +35,7 @@ public class Main extends Sprite {
 
 		_model = new MainModel();
 		_view = new MainView(_model);
+		addChild(DisplayObjectContainer(_view));
 		_controller = new MainController(MainModel(_model), MainView(_view));
 
 		_controller.start();

@@ -27,7 +27,7 @@ public class MainController implements IMainController {
 	}
 
 	private function onModelInit(event:MainModelEvent):void {
-
+		_view.start();
 	}
 }
 }

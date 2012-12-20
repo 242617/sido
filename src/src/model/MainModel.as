@@ -1,5 +1,7 @@
 package model {
 
+import events.MainModelEvent;
+
 import interfaces.IMainModel;
 import interfaces.IObject;
 
@@ -22,7 +24,8 @@ public class MainModel extends Model implements IMainModel {
 	}
 
 	public function start():void {
-
+		//todo:stub
+		dispatchEvent(new MainModelEvent(MainModelEvent.INIT));
 	}
 }
 
