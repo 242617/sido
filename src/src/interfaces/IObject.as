@@ -1,12 +1,12 @@
 package interfaces {
-	
-	/**
-	 * ...
-	 * @author Frankie Wilde
-	 */
-	
-	public interface IObject {
-		
-	}
-	
+
+/**
+ * ...
+ * @author Frankie Wilde
+ */
+
+public interface IObject {
+
+}
+
 }
