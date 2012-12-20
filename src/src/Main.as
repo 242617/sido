@@ -1,5 +1,6 @@
 package {
 	
+	import events.MainModelEvent;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import interfaces.IMainModel;
@@ -25,6 +26,11 @@ package {
 			
 			_model = new MainModel();
 			
+			_model.addEventListener(MainModelEvent.INIT, model_initHandler)
+		}
+		
+		private function model_initHandler(event:MainModelEvent):void {
+			trace("start!");
 		}
 		
 	}

@@ -8,6 +8,8 @@ package interfaces {
 	 */
 	public interface IMainModel extends IEventDispatcher {
 		
+		function get bouncingObjects():Vector.<IObject>;
+		
 	}
 	
 }
