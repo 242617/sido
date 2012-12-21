@@ -24,16 +24,11 @@ package models {
 		}
 		
 		public function start():void {
-			addObject(new Box());
 			dispatchEvent(new MainModelEvent(MainModelEvent.INIT));
 		}
 		
 		public function refresh():void {
 			dispatchEvent(new MainModelEvent(MainModelEvent.CHANGE));
-		}
-		
-		public function addObject(object:IObject):void {
-			_objects.push(object);
 		}
 		
 	}

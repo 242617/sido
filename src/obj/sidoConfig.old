@@ -39,6 +39,7 @@
     <library-path append="true">
       <path-element>C:\Dropbox\actionscript\sido\src\lib\Console.swc</path-element>
       <path-element>C:\Dropbox\actionscript\sido\src\lib\nape-dev.swc</path-element>
+      <path-element>C:\Dropbox\actionscript\sido\src\lib\silhouettes.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>

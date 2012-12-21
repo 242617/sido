@@ -13,6 +13,7 @@ package interfaces {
 		function start():void;
 		
 		function refresh():void;
+		
 	}
 
 }

@@ -24,7 +24,7 @@ package views {
 		
 		public function start():void {
 			addChild(_objects);
-			addChild(_snow);
+			//addChild(_snow);
 		}
 		
 		public function get objects():ObjectsView {

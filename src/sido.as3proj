@@ -54,6 +54,7 @@
     <element path="lib\Swiftsuspenders-v2.0.0rc3stray1.swc" />
     <element path="lib\Console.swc" />
     <element path="lib\nape-dev.swc" />
+    <element path="lib\silhouettes.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
