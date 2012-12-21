@@ -9,6 +9,7 @@ import com.styleru.events.EventAdv;
 public class MainModelEvent extends EventAdv {
 
 	static public const INIT:String = "init";
+	static public const CHANGE:String = "change";
 
 
 	public function MainModelEvent(type:String, data:* = null) {

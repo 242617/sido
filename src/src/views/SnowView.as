@@ -2,7 +2,7 @@
  *
  * @author v.pavkin
  */
-package view {
+package views {
 import flash.display.Sprite;
 
 public class SnowView extends Sprite {

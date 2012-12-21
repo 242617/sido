@@ -1,44 +1,53 @@
 package {
-
-import controller.MainController;
-
-import flash.display.Sprite;
-import flash.events.Event;
-
-import interfaces.IMainController;
-import interfaces.IMainModel;
-import interfaces.IMainView;
-
-import model.MainModel;
-
-import view.MainView;
-
-/**
- * ...
- * @author Frankie Wilde
- */
-
-public class Main extends Sprite {
-
-	private var _model:IMainModel;
-	private var _controller:IMainController;
-	private var _view:IMainView;
-
-	public function Main():void {
-		if (stage) init();
-		else addEventListener(Event.ADDED_TO_STAGE, init);
+	
+	import com.junkbyte.console.Cc;
+	import com.styleru.config.My;
+	import controllers.MainController;
+	
+	import flash.display.Sprite;
+	import flash.events.Event;
+	
+	import interfaces.IMainController;
+	import interfaces.IMainModel;
+	import interfaces.IMainView;
+	
+	import models.MainModel;
+	
+	import views.MainView;
+	
+	/**
+	 * ...
+	 * @author Frankie Wilde
+	 */
+	
+	public class Main extends Sprite {
+		
+		private var _model:IMainModel;
+		private var _controller:IMainController;
+		private var _view:IMainView;
+		
+		public function Main():void {
+			if (stage) {
+				init();
+			} else {
+				addEventListener(Event.ADDED_TO_STAGE, init);
+			}
+		}
+		
+		private function init(e:Event = null):void {
+			removeEventListener(Event.ADDED_TO_STAGE, init);
+			
+			My.consoleRoot = stage;
+			Cc.width = 300;
+			
+			_model = new MainModel();
+			_view = new MainView(_model);
+			addChild(MainView(_view));
+			_controller = new MainController(MainModel(_model), MainView(_view));
+			
+			_controller.start();
+		}
+	
 	}
-
-	private function init(e:Event = null):void {
-		removeEventListener(Event.ADDED_TO_STAGE, init);
-
-		_model = new MainModel();
-		_view = new MainView(_model);
-		_controller = new MainController(MainModel(_model), MainView(_view));
-
-		_controller.start();
-	}
-
-}
 
 }

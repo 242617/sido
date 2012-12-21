@@ -16,6 +16,7 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
+    <class path="..\..\..\..\hg\framework\src" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -51,8 +52,8 @@
   <!-- SWC Libraries -->
   <libraryPaths>
     <element path="lib\Swiftsuspenders-v2.0.0rc3stray1.swc" />
-    <element path="lib\stylerucom-v1.0.1.15.swc" />
     <element path="lib\Console.swc" />
+    <element path="lib\nape-dev.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
