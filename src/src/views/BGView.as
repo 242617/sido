@@ -2,7 +2,7 @@
  *
  * @author v.pavkin
  */
-package view {
+package views {
 import flash.display.GradientType;
 import flash.display.InterpolationMethod;
 import flash.display.SpreadMethod;

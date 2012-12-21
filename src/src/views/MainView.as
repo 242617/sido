@@ -7,7 +7,6 @@ package views {
 	import flash.display.Sprite;
 	import interfaces.IMainModel;
 	import interfaces.IMainView;
-	import view.BGView;
 	
 	public class MainView extends Sprite implements IMainView {
 		
@@ -29,7 +28,7 @@ package views {
 		public function start():void {
 			addChild(_bg);
 			addChild(_objects);
-			//addChild(_snow);
+			addChild(_snow);
 		}
 		
 		public function get objects():ObjectsView {

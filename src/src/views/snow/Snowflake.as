@@ -1,4 +1,4 @@
-﻿package view.snow {
+﻿package views.snow {
 import flash.display.*;
 import flash.events.*;
 
