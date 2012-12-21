@@ -12,6 +12,8 @@ import interfaces.IMainView;
 
 import model.MainModel;
 
+import profiler.SWFProfiler;
+
 import view.MainView;
 
 /**
@@ -32,6 +34,8 @@ public class Main extends Sprite {
 
 	private function init(e:Event = null):void {
 		removeEventListener(Event.ADDED_TO_STAGE, init);
+
+		SWFProfiler.init(stage, this);
 
 		_model = new MainModel();
 		_view = new MainView(_model);
