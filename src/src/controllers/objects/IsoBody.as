@@ -25,8 +25,8 @@ package controllers.objects {
 			for (var i:int = 0; i < polys.length; i++) {
 				var p:GeomPoly = polys.at(i);
 				
-				//var qolys:GeomPolyList = p.simplify(simplification).convexDecomposition(true);
-				var qolys:GeomPolyList = p.simplify(simplification).triangularDecomposition(true);
+				var qolys:GeomPolyList = p.simplify(simplification).convexDecomposition(true);
+				//var qolys:GeomPolyList = p.simplify(simplification).triangularDecomposition(true);
 				
 				for (var j:int = 0; j < qolys.length; j++) {
 					var q:GeomPoly = qolys.at(j);

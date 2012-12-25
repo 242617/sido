@@ -6,8 +6,8 @@
     <movie input="" />
     <movie path="bin\sido.swf" />
     <movie fps="30" />
-    <movie width="800" />
-    <movie height="600" />
+    <movie width="1024" />
+    <movie height="768" />
     <movie version="11" />
     <movie minorVersion="5" />
     <movie platform="Flash Player" />
@@ -16,7 +16,6 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
-    <class path="..\..\..\..\hg\framework\src" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -53,8 +52,10 @@
   <libraryPaths>
     <element path="lib\Swiftsuspenders-v2.0.0rc3stray1.swc" />
     <element path="lib\Console.swc" />
-    <element path="lib\nape-dev.swc" />
     <element path="lib\silhouettes.swc" />
+    <element path="lib\graphics.swc" />
+    <element path="lib\nape-release.swc" />
+    <element path="lib\stylerucom-v1.0.1.15.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

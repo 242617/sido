@@ -27,7 +27,7 @@ package controllers.objects {
 			_bm = new Bitmap(bmd, PixelSnapping.NEVER, true);
 		}
 		
-		public function get graphic():DisplayObject {
+		public function get graphics():DisplayObject {
 			return _bm;
 		}
 		

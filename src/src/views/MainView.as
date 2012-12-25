@@ -26,9 +26,9 @@ package views {
 		}
 		
 		public function start():void {
-			//addChild(_bg);
+			addChild(_bg);
 			addChild(_objects);
-			//addChild(_snow);
+			addChild(_snow);
 		}
 		
 		public function get objects():ObjectsView {

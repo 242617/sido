@@ -3,6 +3,7 @@ package models {
 	import events.MainModelEvent;
 	import interfaces.IMainModel;
 	import interfaces.IObject;
+	import nape.phys.Body;
 	
 	/**
 	 * ...
@@ -11,14 +12,14 @@ package models {
 	
 	public class MainModel extends Model implements IMainModel {
 		
-		private var _objects:Vector.<IObject>;
+		private var _objects:Vector.<Body>;
 		
 		
 		public function MainModel() {
-			_objects = new Vector.<IObject>();
+			_objects = new Vector.<Body>();
 		}
 		
-		public function get objects():Vector.<IObject> {
+		public function get objects():Vector.<Body> {
 			return _objects;
 		}
 		

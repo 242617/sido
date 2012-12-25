@@ -35,9 +35,11 @@ package {
 		private function init(e:Event = null):void {
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
-			My.consoleRoot = stage;
-			Cc.width = 300;
-			SWFProfiler.init(stage, this);
+			if (CONFIG::debug) {
+				My.consoleRoot = stage;
+				Cc.width = 300;
+				SWFProfiler.init(stage, this);
+			}
 			
 			_model = new MainModel();
 			_view = new MainView(_model);

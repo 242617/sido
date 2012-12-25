@@ -2,6 +2,7 @@ package interfaces {
 	
 	import com.styleru.stage3d.interfaces.IModelWrapper;
 	import flash.events.IEventDispatcher;
+	import nape.phys.Body;
 	
 	/**
 	 * ...
@@ -9,7 +10,7 @@ package interfaces {
 	 */
 	public interface IMainModel extends IEventDispatcher {
 		
-		function get objects():Vector.<IObject>;
+		function get objects():Vector.<Body>;
 		
 		function start():void;
 		
