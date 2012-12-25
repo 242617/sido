@@ -3,7 +3,6 @@ package models {
 	import events.MainModelEvent;
 	import interfaces.IMainModel;
 	import interfaces.IObject;
-	import views.objects.Box;
 	
 	/**
 	 * ...

@@ -1,5 +1,6 @@
 package interfaces {
 	
+	import com.styleru.stage3d.interfaces.IModelWrapper;
 	import flash.events.IEventDispatcher;
 	
 	/**
