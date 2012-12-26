@@ -13,6 +13,8 @@ package controllers {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
+	import flash.net.navigateToURL;
+	import flash.net.URLRequest;
 	import flash.utils.getTimer;
 	import flash.utils.Timer;
 	import interfaces.IMainModel;
@@ -65,8 +67,6 @@ package controllers {
 			} else {
 				_view.addEventListener(Event.ADDED_TO_STAGE, _start);
 			}
-			
-			_timer.start();
 		}
 		
 		private function model_changeHandler(event:MainModelEvent):void {
@@ -83,10 +83,11 @@ package controllers {
 			_view.stage.addEventListener(MouseEvent.MOUSE_DOWN, stage_mouseDownHandler);
 			_view.shakeButton.addEventListener(MouseEvent.CLICK, shakeButton_clickHandler);
 			_view.moreBricksButton.addEventListener(MouseEvent.CLICK, moreBricksButton_clickHandler);
+			_view.exitButton.addEventListener(MouseEvent.CLICK, exitButton_clickHandler);
 			
 			_prevTime = getTimer();
 			_space = new Space(Vec2.get(0, 1500));
-			//_debug = new ShapeDebug(_view.stage.stageWidth, _view.stage.stageHeight, 0xe0e0e0);
+			//_debug = new ShapeDebug(1280, 1024, 0xe0e0e0);
 			//_debug.drawConstraints = true;
 			//_view.addChild(_debug.display);
 			
@@ -95,6 +96,7 @@ package controllers {
 			_hand.stiff = false;
 			//_hand.maxForce = 1e5;
 			_hand.space = _space;
+			
 			
 			_createBorder();
 			
@@ -115,6 +117,9 @@ package controllers {
 			var shakeTimer:Timer = new Timer(SHAKE_DELAY);
 			shakeTimer.addEventListener(TimerEvent.TIMER, shakeTimer_timerHandler);
 			shakeTimer.start();
+			
+			
+			_timer.start();
 		}
 		
 		private function stage_mouseUpHandler(event:MouseEvent):void {
@@ -176,10 +181,10 @@ package controllers {
 			
 			var border:Body = new Body(BodyType.STATIC);
 			
-			var left:Polygon = new Polygon(Polygon.rect(0, -side, -2, _view.stage.stageHeight + side));
-			var top:Polygon = new Polygon(Polygon.rect(0, -side, _view.stage.stageWidth, -2));
-			var right:Polygon = new Polygon(Polygon.rect(_view.stage.stageWidth, -side, 2, _view.stage.stageHeight + side));
-			var bottom:Polygon = new Polygon(Polygon.rect(0, _view.stage.stageHeight, _view.stage.stageWidth, 2));
+			var left:Polygon = new Polygon(Polygon.rect(0, -side, -2, 1024 + side));
+			var top:Polygon = new Polygon(Polygon.rect(0, -side, 1280, -2));
+			var right:Polygon = new Polygon(Polygon.rect(1280, -side, 2, 1024 + side));
+			var bottom:Polygon = new Polygon(Polygon.rect(0, 1024, 1280, 2));
 			
 			left.material.elasticity = 10;
 			top.material.elasticity = 10;
@@ -209,12 +214,11 @@ package controllers {
 		 * Добавление кирпичей
 		 */
 		private function _addBricks():void {
-			Cc.info("_addBricks");
 			for each (var item:Sprite in Resources.BRICKS) {
 				var bmd:BitmapData = new BitmapData(item.width, item.height, true, 0x00000000);
 				bmd.draw(item);
 				var body:Body = _addCompoundBody(bmd);
-				body.position.x = MathAdv.random(200, _view.stage.stageWidth - 200);
+				body.position.x = MathAdv.random(200, 1280 - 200);
 				body.position.y = MathAdv.random( -2500, 0);
 				body.rotation = MathAdv.random( -45, 45);
 				_model.objects.push(body);
@@ -227,7 +231,7 @@ package controllers {
 			var bmd:BitmapData = new BitmapData(silhouette.width, silhouette.height, true, 0x00000000);
 			bmd.draw(silhouette);
 			var body:Body = _addCompoundBody(bmd);
-			body.position.x = MathAdv.random(200, _view.stage.stageWidth - 200);
+			body.position.x = MathAdv.random(200, 1280 - 200);
 			body.position.y = MathAdv.random( -2500, 0);
 			body.rotation = MathAdv.random( -45, 45);
 			_model.objects.push(body);
@@ -258,6 +262,10 @@ package controllers {
 		
 		private function silhouettesTimer_timerHandler(event:TimerEvent):void {
 			_addSilhouette(Resources.SILHOUETTES[(event.target as Timer).currentCount - 1]);
+		}
+		
+		private function exitButton_clickHandler(event:MouseEvent):void {
+			navigateToURL(new URLRequest("index.html"), "_self");
 		}
 		
 		public function get mouse():Vec2 {
