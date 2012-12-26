@@ -18,6 +18,7 @@ package views {
 		private var _shakeButton:Button;
 		private var _moreBricksButton:Button;
 		private var _exitButton:Button;
+		private var _resetButton:Button;
 		
 		
 		public function ObjectsView() {
@@ -33,9 +34,14 @@ package views {
 			_exitButton.x = 950;
 			_exitButton.y = 70;
 			
+			_resetButton = new Button(Resources.RESET_BUTTON);
+			_resetButton.x = 500;
+			_resetButton.y = 200;
+			
 			addChild(_shakeButton);
 			addChild(_moreBricksButton);
 			addChild(_exitButton);
+			addChild(_resetButton);
 		}
 		
 		public function render():void {
@@ -69,6 +75,10 @@ package views {
 		
 		public function get exitButton():Button {
 			return _exitButton;
+		}
+		
+		public function get resetButton():Button {
+			return _resetButton;
 		}
 	
 	}

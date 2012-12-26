@@ -14,6 +14,7 @@ package  {
 		static public const SHAKE_BUTTON:MovieClip = new ShakeButton();
 		static public const MORE_BRICKS_BUTTON:MovieClip = new MoreBricksButton();
 		static public const EXIT_BUTTON:MovieClip = new ExitButton();
+		static public const RESET_BUTTON:MovieClip = new ResetButton();
 		
 		static public const BRICK_01:Sprite = new Brick01();
 		static public const BRICK_02:Sprite = new Brick02();

@@ -8,6 +8,7 @@ package controllers {
 	import controllers.objects.IsoBody;
 	import events.MainModelEvent;
 	import flash.display.BitmapData;
+	import flash.display.DisplayObject;
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -40,7 +41,12 @@ package controllers {
 		
 		private var _model:IMainModel;
 		private var _view:ObjectsView;
+		
 		private var _timer:Timer;
+		private var _bricksTimer:Timer;
+		private var _silhouettesTimer:Timer;
+		private var _shakeTimer:Timer;
+		
 		
 		private var _space:Space;
 		//private var _debug:ShapeDebug;
@@ -84,6 +90,7 @@ package controllers {
 			_view.shakeButton.addEventListener(MouseEvent.CLICK, shakeButton_clickHandler);
 			_view.moreBricksButton.addEventListener(MouseEvent.CLICK, moreBricksButton_clickHandler);
 			_view.exitButton.addEventListener(MouseEvent.CLICK, exitButton_clickHandler);
+			_view.resetButton.addEventListener(MouseEvent.CLICK, resetButton_clickHandler);
 			
 			_prevTime = getTimer();
 			_space = new Space(Vec2.get(0, 1500));
@@ -102,22 +109,41 @@ package controllers {
 			
 			
 			//Россыпь кирпичей после старта
-			var bricksTimer:Timer = new Timer(BRICKS_DELAY, 1);
-			bricksTimer.addEventListener(TimerEvent.TIMER_COMPLETE, bricksTimer_timerCompleteHandler);
-			bricksTimer.start();
-			
+			_bricksTimer = new Timer(BRICKS_DELAY, 1);
+			_bricksTimer.addEventListener(TimerEvent.TIMER_COMPLETE, bricksTimer_timerCompleteHandler);
 			
 			//Добавление силуэтов
-			var silhouettesTimer:Timer = new Timer(SILHOUETTES_DELAY, Resources.SILHOUETTES.length);
-			silhouettesTimer.addEventListener(TimerEvent.TIMER, silhouettesTimer_timerHandler);
-			silhouettesTimer.start();
-			
+			_silhouettesTimer = new Timer(SILHOUETTES_DELAY, Resources.SILHOUETTES.length);
+			_silhouettesTimer.addEventListener(TimerEvent.TIMER, silhouettesTimer_timerHandler);
 			
 			//Таймер встряски
-			var shakeTimer:Timer = new Timer(SHAKE_DELAY);
-			shakeTimer.addEventListener(TimerEvent.TIMER, shakeTimer_timerHandler);
-			shakeTimer.start();
+			_shakeTimer = new Timer(SHAKE_DELAY);
+			_shakeTimer.addEventListener(TimerEvent.TIMER, shakeTimer_timerHandler);
 			
+			build();
+		}
+		
+		
+		public function build():void {
+			for each (var item:Body in _model.objects) {
+				item.space = null;
+				var graphics:DisplayObject = item.userData.graphics;
+				_view.contains(graphics) && _view.removeChild(graphics);
+				item.userData.graphics = null;
+				item = null;
+			}
+			
+			_bricksTimer.stop();
+			_bricksTimer.reset();
+			_bricksTimer.start();
+			
+			_silhouettesTimer.stop();
+			_silhouettesTimer.reset();
+			_silhouettesTimer.start();
+			
+			_shakeTimer.stop();
+			_shakeTimer.reset();
+			_shakeTimer.start();
 			
 			_timer.start();
 		}
@@ -215,27 +241,15 @@ package controllers {
 		 */
 		private function _addBricks():void {
 			for each (var item:Sprite in Resources.BRICKS) {
-				var bmd:BitmapData = new BitmapData(item.width, item.height, true, 0x00000000);
-				bmd.draw(item);
-				var body:Body = _addCompoundBody(bmd);
-				body.position.x = MathAdv.random(200, 1280 - 200);
-				body.position.y = MathAdv.random( -2500, 0);
-				body.rotation = MathAdv.random( -45, 45);
+				var body:Body = _addCompoundBody(item);
 				_model.objects.push(body);
-				_view.addChild(body.userData.graphics);
 			}
 		}
 		
 		
 		private function _addSilhouette(silhouette:Sprite):void {
-			var bmd:BitmapData = new BitmapData(silhouette.width, silhouette.height, true, 0x00000000);
-			bmd.draw(silhouette);
-			var body:Body = _addCompoundBody(bmd);
-			body.position.x = MathAdv.random(200, 1280 - 200);
-			body.position.y = MathAdv.random( -2500, 0);
-			body.rotation = MathAdv.random( -45, 45);
+			var body:Body = _addCompoundBody(silhouette);
 			_model.objects.push(body);
-			_view.addChild(body.userData.graphics);
 		}
 		
 		
@@ -243,11 +257,26 @@ package controllers {
 		 * Добавление сложного объекта
 		 * @param	bmd
 		 */
-		private function _addCompoundBody(bmd:BitmapData):Body {
+		private function _addCompoundBody(object:Sprite):Body {
+			var bmd:BitmapData = new BitmapData(object.width, object.height, true, 0x00000000);
+			bmd.draw(object);
+			
 			var iso:BitmapDataIso = new BitmapDataIso(bmd, 0x80);
 			var body:Body = IsoBody.run(iso, iso.bounds);
 			body.userData.graphics = iso.graphics;
 			body.space = _space;
+			
+			body.position.x = MathAdv.random(200, 1280 - 200);
+			body.position.y = MathAdv.random( -2500, 0);
+			body.rotation = MathAdv.random( -45, 45);
+			
+			var graphics:DisplayObject = body.userData.graphics;
+			graphics.x = body.position.x;
+			graphics.y = body.position.y;
+			graphics.rotation = body.rotation;
+			
+			_view.addChild(graphics);
+			
 			return body;
 		}
 		
@@ -266,6 +295,10 @@ package controllers {
 		
 		private function exitButton_clickHandler(event:MouseEvent):void {
 			navigateToURL(new URLRequest("index.html"), "_self");
+		}
+		
+		private function resetButton_clickHandler(event:MouseEvent):void {
+			build();
 		}
 		
 		public function get mouse():Vec2 {

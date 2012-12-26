@@ -19,7 +19,7 @@ package {
 	 * ...
 	 * @author Frankie Wilde
 	 */
-	[SWF(width=1280,height=1024, frameRate=12)]
+	[SWF(width=1280,height=1024, frameRate=24)]
 	public class Main extends Sprite {
 
 		private var _model:IMainModel;
