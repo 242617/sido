@@ -5,6 +5,8 @@ package {
 	import controllers.MainController;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import interfaces.IMainController;
 	import interfaces.IMainModel;
@@ -40,6 +42,9 @@ package {
 				Cc.width = 300;
 				SWFProfiler.init(stage, this);
 			}
+			
+			stage.scaleMode = StageScaleMode.NO_SCALE;
+			stage.align = StageAlign.TOP_LEFT;
 			
 			_model = new MainModel();
 			_view = new MainView(_model);

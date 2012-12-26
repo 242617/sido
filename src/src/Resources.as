@@ -14,9 +14,12 @@ package  {
 		static public const SHAKE_BUTTON:MovieClip = new ShakeButton();
 		static public const MORE_BRICKS_BUTTON:MovieClip = new MoreBricksButton();
 		
+		static public const BRICK_01:Sprite = new Brick01();
+		static public const BRICK_02:Sprite = new Brick02();
+		static public const BRICK_03:Sprite = new Brick03();
+		
 		static public const AXE_01:Sprite = new Axe01();
 		static public const AXE_02:Sprite = new Axe02();
-		
 		static public const SHOVEL:Sprite = new Shovel();
 		
 		static public const SILHOUETTE_01:Sprite = new Silhouette01();
@@ -25,6 +28,7 @@ package  {
 		static public const SILHOUETTE_04:Sprite = new Silhouette04();
 		static public const SILHOUETTE_05:Sprite = new Silhouette05();
 		static public const SILHOUETTE_06:Sprite = new Silhouette06();
+		
 		static public const SILHOUETTES:Vector.<Sprite> = new <Sprite>[
 			SILHOUETTE_01,
 			SILHOUETTE_02,
@@ -36,16 +40,12 @@ package  {
 			AXE_02,
 			SHOVEL,
 		];
-		
-		static public const BRICK_01:Sprite = new Brick01();
-		static public const BRICK_02:Sprite = new Brick02();
-		static public const BRICK_03:Sprite = new Brick03();
 		static public const BRICKS:Vector.<Sprite> = new <Sprite>[
 			BRICK_01,
 			BRICK_02,
 			BRICK_03,
 		];
-
+		
 		
 		[Embed(source='../obj/goblins.mp3')]
 		public static const GOBLINS_MP3:Class;
