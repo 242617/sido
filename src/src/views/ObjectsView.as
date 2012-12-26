@@ -16,13 +16,20 @@ package views {
 		
 		private var _objects:Vector.<Body>;
 		private var _shakeButton:Button;
+		private var _moreBricksButton:Button;
 		
 		
 		public function ObjectsView() {
 			_shakeButton = new Button(Resources.SHAKE_BUTTON);
 			_shakeButton.x = 50;
 			_shakeButton.y = 70;
+			
+			_moreBricksButton = new Button(Resources.MORE_BRICKS_BUTTON);
+			_moreBricksButton.x = 550;
+			_moreBricksButton.y = 70;
+			
 			addChild(_shakeButton);
+			addChild(_moreBricksButton);
 		}
 		
 		public function render():void {
@@ -48,6 +55,10 @@ package views {
 		
 		public function get shakeButton():Button {
 			return _shakeButton;
+		}
+		
+		public function get moreBricksButton():Button {
+			return _moreBricksButton;
 		}
 	
 	}

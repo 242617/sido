@@ -31,7 +31,9 @@ package controllers.objects {
 				for (var j:int = 0; j < qolys.length; j++) {
 					var q:GeomPoly = qolys.at(j);
 					
-					body.shapes.add(new Polygon(q));
+					var poly:Polygon = new Polygon(q);
+					poly.material.elasticity = 10;
+					body.shapes.add(poly);
 					
 					// Recycle GeomPoly and its vertices
 					q.dispose();
