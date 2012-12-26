@@ -16,7 +16,7 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'25.12.2012'</value>
+      <value>'26.12.2012'</value>
     </define>
     <define append="true">
       <name>CONFIG::air</name>
@@ -35,13 +35,13 @@
     <verbose-stacktraces>false</verbose-stacktraces>
     <source-path append="true">
       <path-element>C:\Dropbox\actionscript\sido\src\src</path-element>
-      <path-element>C:\hg\framework\src</path-element>
       <path-element>C:\Dropbox\development\fd4\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
       <path-element>C:\Dropbox\actionscript\sido\src\lib\Console.swc</path-element>
       <path-element>C:\Dropbox\actionscript\sido\src\lib\graphics.swc</path-element>
       <path-element>C:\Dropbox\actionscript\sido\src\lib\nape-release.swc</path-element>
+      <path-element>C:\Dropbox\actionscript\sido\src\lib\stylerucom-v1.0.1.15.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>

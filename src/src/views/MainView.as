@@ -53,6 +53,7 @@ public class MainView extends Sprite implements IMainView {
 	public function get snow():SnowView {
 		return _snow;
 	}
+	}
 }
-}
+
 
