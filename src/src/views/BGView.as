@@ -60,7 +60,7 @@ public class BGView extends Sprite {
 		this.modifyRates();
 	}
 
-	private static const K:int = 5;
+	private static const K:int = 1;
 
 	private function modifyColors():void {
 		for (var i:int = 0; i < _colors.length; i++) {
