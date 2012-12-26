@@ -5,6 +5,7 @@
 package views {
 
 import flash.display.Sprite;
+import flash.events.Event;
 import flash.media.Sound;
 
 import interfaces.IMainModel;
@@ -28,7 +29,7 @@ public class MainView extends Sprite implements IMainView {
 		_snow = new SnowView();
 
 		_sound = new Resources.GOBLINS_MP3();
-		_sound.play();
+		_sound.play(0, 99999);
 	}
 
 	public function start():void {
