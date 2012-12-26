@@ -11,7 +11,11 @@
           </entries>
           <sdk name="4.5.1" />
         </dependencies>
-        <compiler-options />
+        <compiler-options>
+          <map>
+            <entry key="compiler.define" value="CONFIG::debug&#9;false" />
+          </map>
+        </compiler-options>
         <packaging-air-desktop />
         <packaging-android />
         <packaging-ios />

@@ -48,6 +48,7 @@ public class Snowflake extends Sprite {
 		this.alpha = alphaValue;
 
 		this.addEventListener(Event.ENTER_FRAME, MoveSnowFlake);
+		this.cacheAsBitmap = true;
 	}
 
 	private function MoveSnowFlake(e:Event):void {

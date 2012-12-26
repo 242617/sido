@@ -17,7 +17,7 @@ package {
 	 * ...
 	 * @author Frankie Wilde
 	 */
-	
+	[SWF(width=1280,height=1024)]
 	public class Main extends Sprite {
 		
 		private var _model:IMainModel;

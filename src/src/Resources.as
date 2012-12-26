@@ -1,16 +1,16 @@
 package  {
-	
+
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import graphics.*;
-	
+
 	/**
 	 * ...
 	 * @author Frankie Wilde
 	 */
-	
+
 	public class Resources {
-		
+
 		static public const SHAKE_BUTTON:MovieClip = new ShakeButton();
 		static public const MORE_BRICKS_BUTTON:MovieClip = new MoreBricksButton();
 		
@@ -45,6 +45,10 @@ package  {
 			BRICK_02,
 			BRICK_03,
 		];
+
+		
+		[Embed(source='../obj/goblins.mp3')]
+		public static const GOBLINS_MP3:Class;
 		
 	}
 

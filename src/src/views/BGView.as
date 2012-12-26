@@ -12,13 +12,20 @@ import flash.geom.Matrix;
 
 public class BGView extends Sprite {
 
-	private var _c1:uint = 0xcc3300;
-	private var _c2:uint = 0x99ff00;
-	private var _c3:uint = 0x3300;
-	private var _r1:uint = 0x25;
-	private var _r2:uint = 0x77;
-	private var _r3:uint = 0xd9;
+	private var _colors:Array = [
+		[0xcc, 0x33, 0x00],
+		[0x99, 0xff, 0x00],
+		[0x00, 0x33, 0x00]
+	];
+	private var _rates:Array = [0x25, 0x77, 0xa9];
 	private var _focalRatio:Number = 0;
+
+	private var _colorMods:Array = [
+		[1, -1, 1],
+		[1, 1, -1],
+		[1, -1, 1]
+	];
+	private var _rateMod:int = 1;
 
 	public function BGView() {
 
@@ -37,18 +44,43 @@ public class BGView extends Sprite {
 		m.createGradientBox(this.stage.stageWidth, this.stage.stageHeight, 3.14, 0, 0);
 
 		this.graphics.clear();
-		this.graphics.beginGradientFill(GradientType.RADIAL, [ (_c1 = p(_c1, 20)), (_c2 = p(_c2, 20)), (_c3 = p(_c3, 20))], [1, 1, 1], [_r1 = p(_r1, 5, 0xaa), _r2 = p(_r2, 5, 0xaa), _r3 = p(_r3, 5, 0xaa)], m, SpreadMethod.REFLECT, InterpolationMethod.RGB, (_focalRatio = p(_focalRatio, 0.01, 0.5)));
+		this.graphics.beginGradientFill(GradientType.RADIAL, _colors.map(function (item:*, index:int, array:Array):* {
+			return item[2] + 0x100 * item[1] + 0x10000 * item[0];
+		}), [1, 1, 1], _rates, m, SpreadMethod.REFLECT, InterpolationMethod.RGB, _focalRatio);
 		this.graphics.drawRect(0, 0, this.stage.stageWidth, this.stage.stageHeight);
 		this.graphics.endFill();
+
+		this.modifyColors();
+		this.modifyRates();
 	}
 
-	private function p(v:uint, i:uint, max:uint = 0xffffff):uint {
-		var r:int = i * (Math.random() - 0.5);
-		if (v + r < 0)
-			return 0;
-		if (v + r > max)
-			return max;
-		return v + r;
+	private static const K:int = 1;
+
+	private function modifyColors():void {
+		for (var i:int = 0; i < _colors.length; i++) {
+			for (var j:int = 0; j < _colors[i].length; j++) {
+				if (isOutRate(_colors[i][j] + K * _colorMods[i][j]))
+					_colorMods[i][j] = -_colorMods[i][j];
+				_colors[i][j] += K * _colorMods[i][j];
+			}
+		}
+		trace(_colors.map(function (item:*, index:int, array:Array):* {
+			return item.toString(16);
+		}));
+	}
+	private function isOutColor(color:uint):Boolean {
+		return color < 0x00000 || color > 0xff1000;
+	}
+	private function modifyRates():void {
+		for (var i:int = 0; i < _rates.length; i++) {
+			if (isOutRate(_rates[i] + K * _rateMod))
+				_rateMod = -_rateMod;
+			_rates[i] += K * _rateMod;
+		}
+		//trace(_rates);
+	}
+	private function isOutRate(color:uint):Boolean {
+		return color < 0 || color >= 0xff;
 	}
 }
 }
