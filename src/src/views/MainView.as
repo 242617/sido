@@ -4,8 +4,10 @@
  */
 package views {
 
+import clock.EnterFrameClock;
+import clock.SecondsTimer;
+
 import flash.display.Sprite;
-import flash.events.Event;
 import flash.media.Sound;
 
 import interfaces.IMainModel;
@@ -20,19 +22,25 @@ public class MainView extends Sprite implements IMainView {
 	private var _snow:SnowView;
 	private var _sound:Sound;
 
+	private var _clock:EnterFrameClock;
+	private var _timer:SecondsTimer;
+
 	public function MainView(model:IMainModel) {
 		super();
 		_model = model;
-
-		_bg = new BGView();
 		_objects = new ObjectsView();
-		_snow = new SnowView();
 
 		_sound = new Resources.GOBLINS_MP3();
 		_sound.play(0, 99999);
 	}
 
 	public function start():void {
+		_clock = new EnterFrameClock(this);
+		_timer = new SecondsTimer(_clock);
+
+		_bg = new BGView(_timer);
+		_snow = new SnowView(_timer);
+
 		addChild(_bg);
 		addChild(_objects);
 		addChild(_snow);

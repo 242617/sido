@@ -3,11 +3,14 @@
  * @author v.pavkin
  */
 package views {
+import clock.SecondsTimer;
+
 import flash.display.GradientType;
 import flash.display.InterpolationMethod;
 import flash.display.SpreadMethod;
 import flash.display.Sprite;
 import flash.events.Event;
+import flash.events.TimerEvent;
 import flash.geom.Matrix;
 
 public class BGView extends Sprite {
@@ -27,7 +30,10 @@ public class BGView extends Sprite {
 	];
 	private var _rateMod:int = 1;
 
-	public function BGView() {
+	private var _timer:SecondsTimer;
+
+	public function BGView(timer:SecondsTimer) {
+		_timer = timer;
 
 		if (stage) start();
 		else addEventListener(Event.ADDED_TO_STAGE, start);
@@ -35,10 +41,10 @@ public class BGView extends Sprite {
 
 	private function start(event:Event = null):void {
 		removeEventListener(Event.ADDED_TO_STAGE, start);
-		this.addEventListener(Event.ENTER_FRAME, onEnterFrame)
+		_timer.addEventListener(TimerEvent.TIMER, onTimer)
 	}
 
-	private function onEnterFrame(event:Event):void {
+	private function onTimer(event:Event):void {
 
 		var m:Matrix = new Matrix();
 		m.createGradientBox(this.stage.stageWidth, this.stage.stageHeight, 3.14, 0, 0);
@@ -54,7 +60,7 @@ public class BGView extends Sprite {
 		this.modifyRates();
 	}
 
-	private static const K:int = 1;
+	private static const K:int = 5;
 
 	private function modifyColors():void {
 		for (var i:int = 0; i < _colors.length; i++) {

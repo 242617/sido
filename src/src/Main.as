@@ -1,5 +1,5 @@
 package {
-	
+
 	import com.junkbyte.console.Cc;
 	import com.styleru.config.My;
 	import controllers.MainController;
@@ -12,18 +12,18 @@ package {
 	import models.MainModel;
 	import profiler.SWFProfiler;
 	import views.MainView;
-	
+
 	/**
 	 * ...
 	 * @author Frankie Wilde
 	 */
-	[SWF(width=1280,height=1024)]
+	[SWF(width=1280,height=1024, frameRate=12)]
 	public class Main extends Sprite {
-		
+
 		private var _model:IMainModel;
 		private var _controller:IMainController;
 		private var _view:IMainView;
-		
+
 		public function Main():void {
 			if (stage) {
 				init();
@@ -31,24 +31,24 @@ package {
 				addEventListener(Event.ADDED_TO_STAGE, init);
 			}
 		}
-		
+
 		private function init(e:Event = null):void {
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			
+
 			if (CONFIG::debug) {
 				My.consoleRoot = stage;
 				Cc.width = 300;
 				SWFProfiler.init(stage, this);
 			}
-			
+
 			_model = new MainModel();
 			_view = new MainView(_model);
 			addChild(DisplayObjectContainer(_view));
 			_controller = new MainController(MainModel(_model), MainView(_view));
-			
+
 			_controller.start();
 		}
-	
+
 	}
 }
 

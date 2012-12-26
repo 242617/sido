@@ -1,4 +1,6 @@
 ﻿package views.snow {
+import clock.SecondsTimer;
+
 import flash.display.*;
 import flash.events.*;
 
@@ -18,7 +20,10 @@ public class Snowflake extends Sprite {
 	private var maxHeight:Number = 0;
 	private var maxWidth:Number = 0;
 
-	public function Snowflake() {
+	private var _timer:SecondsTimer;
+
+	public function Snowflake(timer:SecondsTimer) {
+		_timer = timer;
 	}
 
 	public function start():void {
@@ -34,9 +39,8 @@ public class Snowflake extends Sprite {
 		scale = .01 + Math.random();
 		alphaValue = .1 + Math.random();
 
-		var stageObject:Stage = this.stage as Stage;
-		maxWidth = stageObject.stageWidth;
-		maxHeight = stageObject.stageHeight;
+		maxWidth = 1280;
+		maxHeight = 1024;
 
 		this.x = Math.random() * maxWidth;
 		this.y = Math.random() * maxHeight;
@@ -47,7 +51,7 @@ public class Snowflake extends Sprite {
 		this.scaleX = this.scaleY = scale;
 		this.alpha = alphaValue;
 
-		this.addEventListener(Event.ENTER_FRAME, MoveSnowFlake);
+		_timer.addEventListener(TimerEvent.TIMER, MoveSnowFlake);
 		this.cacheAsBitmap = true;
 	}
 
