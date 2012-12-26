@@ -17,7 +17,7 @@ public class MainView extends Sprite implements IMainView {
 
 	private var _model:IMainModel;
 
-	private var _bg:BGView;
+	private var _bg:StaticBGView;
 	private var _objects:ObjectsView;
 	private var _snow:SnowView;
 	private var _sound:Sound;
@@ -38,7 +38,7 @@ public class MainView extends Sprite implements IMainView {
 		_clock = new EnterFrameClock(this);
 		_timer = new SecondsTimer(_clock);
 
-		_bg = new BGView(_timer);
+		_bg = new StaticBGView();
 		_snow = new SnowView(_timer);
 
 		addChild(_bg);

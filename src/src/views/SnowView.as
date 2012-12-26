@@ -13,7 +13,7 @@ import views.snow.Snowflake;
 
 public class SnowView extends Sprite {
 
-	public static const DEFAULT_FLAKES_COUNT:uint = 200;
+	public static const DEFAULT_FLAKES_COUNT:uint = 30;
 
 	private var _flakes:Vector.<Snowflake>;
 	private var _timer:SecondsTimer;
